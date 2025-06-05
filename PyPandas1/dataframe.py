@@ -5,7 +5,7 @@ print("=== BÀI TẬP PYTHON PANDAS 1 ===")
 print("Bài 1: Tạo và thao tác với DataFrame\n")
 
 # Tạo DataFrame với thông tin 10 sinh viên
-data = {
+data_dict = {
     'Name': ['Nguyễn Văn An', 'Trần Thị Bình', 'Lê Văn Cường', 'Phạm Thị Dung', 
              'Hoàng Văn Em', 'Vũ Thị Phương', 'Đỗ Văn Giang', 'Bùi Thị Hoa',
              'Ngô Văn Inh', 'Lý Thị Kim'],
@@ -14,7 +14,7 @@ data = {
     'Score': [8.5, 6.2, 4.8, 7.3, 9.1, 5.5, 3.2, 8.8, 6.7, 7.9]
 }
 
-df_students = pd.DataFrame(data)
+df_students = pd.DataFrame(data_dict)
 
 print("1. HIỂN THỊ DỮ LIỆU:")
 print("=" * 50)
