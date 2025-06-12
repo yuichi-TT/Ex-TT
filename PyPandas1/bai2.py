@@ -20,12 +20,12 @@ df_phongban = pd.DataFrame(data_phongban)
 
 print("Bảng Nhân viên ban đầu:")
 print(df_nhanvien)
-print("\nBảng Phòng ban ban đầu:")
+print("Bảng Phòng ban ban đầu:")
 print(df_phongban)
 print("-" * 30)
 
 # 1. Kiểm tra các ô dữ liệu bị thiếu trong bảng Nhân viên
-print("\n1. Kiểm tra dữ liệu bị thiếu trong bảng Nhân viên:")
+print("1. Kiểm tra dữ liệu bị thiếu trong bảng Nhân viên:")
 print(df_nhanvien.isnull().sum())
 print("-" * 30)
 
@@ -37,7 +37,7 @@ print("-" * 30)
 # Hoặc hiểu là, giữ lại dòng nếu nó có ít nhất (số cột - 2) giá trị không thiếu.
 # Trong trường hợp này, tổng số cột là 5. Giữ lại nếu có ít nhất 5-2 = 3 giá trị không thiếu.
 df_nhanvien_cleaned = df_nhanvien.dropna(thresh=len(df_nhanvien.columns) - 2)
-print("\n2. Bảng Nhân viên sau khi xóa dòng có hơn 2 giá trị thiếu:")
+print("2. Bảng Nhân viên sau khi xóa dòng có hơn 2 giá trị thiếu:")
 print(df_nhanvien_cleaned)
 print("-" * 30)
 
@@ -58,7 +58,7 @@ df_nhanvien['Salary'].fillna(method='ffill', inplace=True) # ffill: forward fill
 # Department: thay bằng "Unknown"
 df_nhanvien['Department'].fillna("Unknown", inplace=True)
 
-print("\n3. Bảng Nhân viên sau khi điền giá trị thiếu:")
+print("3. Bảng Nhân viên sau khi điền giá trị thiếu:")
 print(df_nhanvien)
 print("-" * 30)
 
@@ -68,38 +68,38 @@ print("-" * 30)
 df_nhanvien['Age'] = df_nhanvien['Age'].round().astype(int)
 df_nhanvien['Salary'] = df_nhanvien['Salary'].astype(int)
 
-print("\n4. Bảng Nhân viên sau khi chuyển kiểu dữ liệu Age và Salary sang int:")
+print("4. Bảng Nhân viên sau khi chuyển kiểu dữ liệu Age và Salary sang int:")
 print(df_nhanvien.info())
 print(df_nhanvien)
 print("-" * 30)
 
 # 5. Tạo cột mới Salary_after_tax: giá trị sẽ là cột Salary - 10% thuế
 df_nhanvien['Salary_after_tax'] = df_nhanvien['Salary'] - (df_nhanvien['Salary'] * 0.10)
-print("\n5. Bảng Nhân viên với cột Salary_after_tax:")
+print("5. Bảng Nhân viên với cột Salary_after_tax:")
 print(df_nhanvien)
 print("-" * 30)
 
 # 6. Lọc ra các nhân viên thuộc phòng IT và có tuổi lớn hơn 25
 it_employees_over_25 = df_nhanvien[(df_nhanvien['Department'] == 'IT') & (df_nhanvien['Age'] > 25)]
-print("\n6. Nhân viên thuộc phòng IT và có tuổi lớn hơn 25:")
+print("6. Nhân viên thuộc phòng IT và có tuổi lớn hơn 25:")
 print(it_employees_over_25)
 print("-" * 30)
 
 # 7. Sắp xếp bảng nhân viên theo Salary_after_tax giảm dần
 df_nhanvien_sorted = df_nhanvien.sort_values(by='Salary_after_tax', ascending=False)
-print("\n7. Bảng Nhân viên sắp xếp theo Salary_after_tax giảm dần:")
+print("7. Bảng Nhân viên sắp xếp theo Salary_after_tax giảm dần:")
 print(df_nhanvien_sorted)
 print("-" * 30)
 
 # 8. Nhóm nhân viên theo Department và tính mức lương trung bình cho từng phòng ban
 average_salary_by_department = df_nhanvien.groupby('Department')['Salary'].mean().reset_index()
-print("\n8. Mức lương trung bình theo từng phòng ban:")
+print("8. Mức lương trung bình theo từng phòng ban:")
 print(average_salary_by_department)
 print("-" * 30)
 
 # 9. Dùng merge() để nối bảng nhân viên với bảng quản lý phòng ban
 df_merged = pd.merge(df_nhanvien, df_phongban, on='Department', how='left')
-print("\n9. Bảng Nhân viên sau khi merge với bảng Phòng ban:")
+print("9. Bảng Nhân viên sau khi merge với bảng Phòng ban:")
 print(df_merged)
 print("-" * 30)
 
@@ -127,6 +127,6 @@ df_nhanvien_final = pd.concat([df_merged, df_new_employees], ignore_index=True)
 df_nhanvien_final['Manager'].fillna('Chưa có', inplace=True)
 
 
-print("\n10. Bảng Nhân viên sau khi thêm 2 nhân viên mới:")
+print("10. Bảng Nhân viên sau khi thêm 2 nhân viên mới:")
 print(df_nhanvien_final)
 print("-" * 30)
