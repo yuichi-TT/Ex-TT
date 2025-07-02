@@ -231,7 +231,7 @@ def main():
         return
 
     for index, code in enumerate(invoice_codes):
-        print(f"\n--- Xử lý mã hóa đơn ({index+1}/{len(invoice_codes)}) ---") # Đã loại bỏ code khỏi dòng này
+        print(f"\n--- Xử lý mã hóa đơn ({index+1}/{len(invoice_codes)}) ---") 
 
         driver.get(MEINVOICE_URL)
         
@@ -240,7 +240,7 @@ def main():
                 EC.presence_of_element_located((By.ID, "txtCode"))
             )
         except TimeoutException:
-            print(f"Lỗi: Không thể tải trang tra cứu hoặc tìm thấy trường nhập mã. Bỏ qua.") # Đã loại bỏ code
+            print(f"Lỗi: Không thể tải trang tra cứu hoặc tìm thấy trường nhập mã. Bỏ qua.") 
             continue
 
         if not enter_code(driver, code):
@@ -250,10 +250,10 @@ def main():
             continue
 
         if check_result(driver):
-            print(f"Mã tra cứu: Tìm thấy hóa đơn. Đang tiến hành tải xuống...") # Đã thay thế '{code}' bằng 'Mã tra cứu'
+            print(f"Mã tra cứu: Tìm thấy hóa đơn. Đang tiến hành tải xuống...") 
             download_invoice(driver)
         else:
-            print(f"Mã tra cứu: Không tìm thấy hóa đơn hoặc có lỗi. Đã xử lý popup (nếu có).") # Đã thay thế '{code}' bằng 'Mã tra cứu'
+            print(f"Mã tra cứu: Không tìm thấy hóa đơn hoặc có lỗi. Đã xử lý popup (nếu có).") 
             
         time.sleep(SHORT_WAIT)
 
